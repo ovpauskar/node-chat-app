@@ -19,13 +19,24 @@ io.on("connection",(socket)=>{
 
   socket.on("createMessage", (message)=>{
     console.log("Create Message:", message);
+
+    // socket.broadcast.emit("newMessage",{
+    //   name: message.name,
+    //   address: message.address
+    // })
   });
 
   socket.emit("newMessage", {
-    from:"Hippo",
-    text:"yeah! I'm great.",
-    createdAt: 12345
+    from: "Admin",
+    text: "Welcome to the chat app",
+    createdAt: new Date().getTime()
   });
+
+  socket.broadcast.emit("newMessage",{
+    from: "Admin",
+    text: "New User joined",
+    createdAt:new Date().getTime()
+    });
 });
 
 server.listen(port,()=>{
