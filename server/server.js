@@ -19,10 +19,10 @@ io.on("connection",(socket)=>{
     console.log("User Disconnected!!");
   });
 
-  socket.on("createMessage", (message)=>{
+  socket.on("createMessage", (message, callback)=>{
     console.log("Create Message:", message);
-
-    socket.broadcast.emit("newMessage", generateMessage(message.name, message.address));
+    io.emit("newMessage", generateMessage(message.from, message.text));
+    callback("This is from server");
   });
 
   socket.emit("newMessage", generateMessage("Admin","Welcome to the chat app"));
