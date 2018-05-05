@@ -20,10 +20,10 @@ io.on("connection",(socket)=>{
   socket.on("createMessage", (message)=>{
     console.log("Create Message:", message);
 
-    // socket.broadcast.emit("newMessage",{
-    //   name: message.name,
-    //   address: message.address
-    // })
+    socket.broadcast.emit("newMessage",{
+      name: message.name,
+      address: message.address
+    })
   });
 
   socket.emit("newMessage", {
