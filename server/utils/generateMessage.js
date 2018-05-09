@@ -15,4 +15,9 @@ url:`https://www.google.com/maps?q=${latitude},${longitude}`,
 createdAt:moment().valueOf()
 };
 };
-module.exports = {generateMessage, generateLocationMessage};
+
+var isRealString = (str)=>{
+  return typeof str === "string" && str.trim().length > 0;
+};
+
+module.exports = {generateMessage, generateLocationMessage, isRealString};
